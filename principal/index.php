@@ -1,3 +1,11 @@
+<?php
+
+    session_start();
+    if(!isset($_SESSION['id'])){
+        header("location: ../login/index.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,19 +28,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ml-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Serviços</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Produtos</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Pedido</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Encomendar</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Nossa Empresa</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../login">login</a></li>
                     </ul> 
                 </div>
             </div>
@@ -200,7 +205,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Confete</div>
-                                <div class="portfolio-caption-subheading text-muted">De todas as cores, chocolate preto ou branco</div>
+                                <div class="portfolio-caption-subheading text-muted">De todas as cores, chocolate</div>
                             </div>
                         </div>
                     </div>
@@ -228,7 +233,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Artes</div>
-                                <div class="portfolio-caption-subheading text-muted">Artes, mensagens em chocolate preto ou branco</div>
+                                <div class="portfolio-caption-subheading text-muted">Artes, mensagens em chocolate+</div>
                             </div>
                         </div>
                     </div>
@@ -244,7 +249,7 @@
                 </div>
                 <ul class="timeline">
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/bolo.jpg" alt="" /></div>
+                        <div class="timeline-image"><a href="#portfolio"><img class="rounded-circle img-fluid" src="assets/img/about/bolo.jpg" alt=""/></a></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>1°</h4>
@@ -295,6 +300,7 @@
                 </ul>
             </div>
         </section>
+        <!-- PEDIDO-->
         <!-- Team-->
         <section class="page-section bg-light" id="team">
             <div class="container">
@@ -311,6 +317,7 @@
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://api.whatsapp.com/send?phone=5547991936552"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -321,22 +328,51 @@
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/voce.png" alt="" />
+                            <h4>Você</h4>
+                            <p class="text-muted"></p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
             </div>
         </section>
+        
+        
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contate-nos</h2>
-                    <h3 class="section-subheading text-muted">Fale conosco a qualquer momento.</h3>
+                    <h2 class="section-heading text-uppercase">Peça agora</h2>
+                    <h3 class="section-subheading text-muted">De qualquer lugar a qualquer momento.</h3>
                 </div>
-                <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                <form method="POST" action="../src/index.php" name="sentMessage" novalidate="novalidate">
+                <select name="selectbolo" id="bolos" >
+                    <option value="0" selected="selected" disabled="disabled">Bolos</option>
+                    <option value="chocoCake">Choco Cake</option> 
+                    <option value="chocoberry">ChocoBerry Cake</option>
+                    <option value="rainbow">Rainbow Cake</option>
+                    <option value="princes">Princes Cake</option>
+                    <option value="galaxy">Galaxy Cake</option>
+                    <option value="redvalvet">Red Valvet Cake</option>
+                </select>
+                <input name="qtdbol" type="text" id="qtdbol" placeholder="Quantidade em Kg">
+                <select name="selecttopo" id="topos">
+                    <option value="0" selected="selected" disabled="disabled">Decorações</option>
+                    <option value="docinhos">Docinhos</option> 
+                    <option value="bombom">Bom Bom</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="confete">Confete</option>
+                    <option value="marshmallow">Marshmallow</option>
+                    <option value="artes">Artes</option>
+                </select>
+                <input name="qtddoc" class="inpt" type="text" id="qtddoc" placeholder="Quantidade Docinhos">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -344,7 +380,7 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="email" type="email" placeholder="Email *" required="required" data-validation-required-message="Please enter your email address." />
+                                <input class="form-control" name='email' id="email" type="email" placeholder="Email *" required="required" data-validation-required-message="Please enter your email address." />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group mb-md-0">
@@ -361,7 +397,7 @@
                     </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Enviar</button>
+                        <input class="btn btn-primary btn-xl text-uppercase"  type="submit">Enviar</input>
                     </div>
                 </form>
             </div>
@@ -375,6 +411,7 @@
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://api.whatsapp.com/send?phone=5547991936552"><i class="fab fa-whatsapp"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right">
                         <a class="mr-3" href="#!">Privacy Policy</a>
@@ -394,18 +431,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Choco Cake</h2>
+                                    <p class="item-intro text-muted">Chocolate preto e branco.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/01-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Ideal para presentear os amantes de chocolate, uma combinação deliciosa de Chocolate Preto na cobertura e corpo e Chocolate Branco no interior!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Threads</li>
-                                        <li>Category: Illustration</li>
+                                        <li>R$48,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -424,18 +459,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">ChocoBerry Cake</h2>
+                                    <p class="item-intro text-muted">Chocolate com Morango.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/02-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Que sensação essa mistura! Chocolate com Morango. Chocolate preto meio amargo e chocolate branco com morangos e creme no recheio</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Explore</li>
-                                        <li>Category: Graphic Design</li>
+                                        <li>R$52,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -454,18 +487,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Rainbow Cake</h2>
+                                    <p class="item-intro text-muted">TutiFrut</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/03-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>TutiFrut: Do Italiano, TODAS AS FRUTAS, uma explosão de sabores indesquecível, ótimo para festas infantis!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Finish</li>
-                                        <li>Category: Identity</li>
+                                        <li>R$50,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -484,18 +515,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Princes Cake</h2>
+                                    <p class="item-intro text-muted">Chocolate Branco e Morango</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/04-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Que tal surpreender sua princesa com este lindo bolo?!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Lines</li>
-                                        <li>Category: Branding</li>
+                                        <li>R$52,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -514,18 +543,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Galaxy Cake</h2>
+                                    <p class="item-intro text-muted">TutiFrut</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/05-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Explore as sensações universo com uma garfada! Este bolo será uma viajem inesquecível?!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Southwest</li>
-                                        <li>Category: Website Design</li>
+                                        <li>R$56,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                       Voltar
                                     </button>
                                 </div>
                             </div>
@@ -544,18 +571,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Red Valvet Cake</h2>
+                                    <p class="item-intro text-muted">Frutas Vermelhas.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/06-full.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Para os apaixonados: Todas as frutas vermelhas em um só lugar!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Window</li>
-                                        <li>Category: Photography</li>
+                                        <li>R$60,00 Kg</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -575,18 +600,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Docinhos</h2>
+                                    <p class="item-intro text-muted">Brigadeiros, beijinho.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>A decisão é sua, contate-nos e peça docinhos do seu gosto, qualquer sabor e cor à disposição!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Threads</li>
-                                        <li>Category: Illustration</li>
+                                        <li>R$1,00 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -605,18 +628,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Bom Bom</h2>
+                                    <p class="item-intro text-muted">Trufas, bombomns.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Chocolate nunca é demais, peça a quantidade e nos informe os sabores!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Explore</li>
-                                        <li>Category: Graphic Design</li>
+                                        <li>R$1,50 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -635,18 +656,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Frutas</h2>
+                                    <p class="item-intro text-muted">De todos os tipos e sabores.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/9.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Que tal uma festa Leve, saudavel e tropical? Adicione Frutas ao seu bolo!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Finish</li>
-                                        <li>Category: Identity</li>
+                                        <li>R$0,50 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -665,18 +684,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Confete</h2>
+                                    <p class="item-intro text-muted">De todas as cores, chocolate preto ou branco.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/10.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Deixe sua festa mais divertida e doce adicionando confetes!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Lines</li>
-                                        <li>Category: Branding</li>
+                                        <li>R$0,05 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -695,18 +712,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Marshmallow</h2>
+                                    <p class="item-intro text-muted">De todas as cores.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/11.jpg" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Um ingrediente irresistível aos olhos, deixa tudo mais divertido!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Southwest</li>
-                                        <li>Category: Website Design</li>
+                                        <li>R$0,25 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>
@@ -725,18 +740,16 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Artes</h2>
+                                    <p class="item-intro text-muted">Artes, mensagens em chocolate preto ou branco.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/12.png" alt="" />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Deixe uma mensagem carinhosa para alguém, um pedido de namoro, casamento, a criatividade e escolha são suas!</p>
                                     <ul class="list-inline">
-                                        <li>Date: January 2020</li>
-                                        <li>Client: Window</li>
-                                        <li>Category: Photography</li>
+                                        <li>R$10,00 Und.</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Voltar
                                     </button>
                                 </div>
                             </div>

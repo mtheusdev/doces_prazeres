@@ -418,6 +418,7 @@ h6, .h6 {
   line-height: 1.2;
 }
 
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -10364,6 +10365,7 @@ header.masthead .masthead-heading {
   margin-bottom: 0;
 }
 
+
 @media (min-width: 768px) {
   .timeline:before {
     left: 50%;
@@ -10453,10 +10455,11 @@ header.masthead .masthead-heading {
 }
 
 section#contact {
-  background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
+  background-color: #2a2c2e;
+  background-image: url("../assets/img/portfolio/07-full.jpg");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
 }
 section#contact .section-heading {  
   color: #fff;
@@ -10510,4 +10513,74 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+div#pedido {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+input#enviarpedido {
+  height: 50px;
+  width: 120px;
+  font-size: 20px;
+  background-color: #7e479b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 50%;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  margin-bottom: 20px;
+}
+select#bolos {
+  height: 38px;
+  width: 275px;
+  font-size: 20px;
+  color: #ef5c06;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align-last: center;
+}
+input#qtdbol {
+  height: 38px;
+  width: 255px;
+  font-size: 20px;
+  color: #ef5c06;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+select#topos {
+
+  height: 38px;
+    width: 271px;
+    color: #ef5c06;
+    margin: 0 0 10px 23px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align-last: center;
+}
+
+input#qtddoc {
+  height: 38px;
+  width: 260px;
+  color: #ef5c06;
+  margin: 0 0 10px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align-last: center
 }
