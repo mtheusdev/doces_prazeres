@@ -341,3 +341,112 @@
     display: none;
   }
 }
+
+div#Aguardando {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  font-family: system-ui;
+}
+h1 {
+  text-align: center;
+  font-family: system-ui;
+  color: orangered;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: orangered;
+}
+
+h2 {
+  font-size: 36px;
+  font-family: system-ui;
+  text-align: center;
+  color: orange;
+  padding: 10px;
+}
+
+div#todos {
+  display: grid;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  border-top: 1px solid; 
+  /* border-radius: 5px; */
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+div#Entregues {
+  display: grid;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  border-top: 1px solid; 
+  /* border-radius: 5px; */
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+div#Ag {
+  display: grid;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  border-top: 1px solid; 
+  /* border-radius: 5px; */
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+div#proc {
+  display: grid;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: auto;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  border-top: 1px solid; 
+  /* border-radius: 5px; */
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+button {
+  color: black;
+  background-color: #ffa500;
+  border: none;
+  border-radius: 25px;
+  width: 60px;
+  height: 20px;
+  font-family: system-ui;
+  cursor: pointer;
+  /* padding: 1px; */
+  margin-top: 15px;
+}

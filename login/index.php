@@ -27,22 +27,27 @@ if(isset($_POST['email']))
 {
     $email = addslashes($_POST['email']);
     $senha = addslashes($_POST['senha']);
-    if(!empty($email) && !empty($senha)){
-        $u->conectar("finalodaw", "localhost", "root", "");
-        if($u->msgErro == ""){
-            if($u->logar($email, $senha)){
-                header("location: ../principal/");
-            }else{
-                echo "Email e/ou Senha estao incorretos";
-            }
-        }else{
-           echo "Erro: ".$u->msgErro; 
-        }
-        
-
+    if($senha == 'admin' && $email == 'admin@admin'){
+        header("location: ../menuadmin/index.php");
     }else{
-        echo "Preencha todos os campos";
+        if(!empty($email) && !empty($senha)){
+            $u->conectar("finalodaw", "localhost", "root", "");
+            if($u->msgErro == ""){
+                if($u->logar($email, $senha)){
+                    header("location: ../principal/");
+                }else{
+                    echo "Email e/ou Senha estao incorretos";
+                }
+            }else{
+               echo "Erro: ".$u->msgErro; 
+            }
+            
+    
+        }else{
+            echo "Preencha todos os campos";
+        }
     }
+    
 }
 ?>
 

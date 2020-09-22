@@ -5,7 +5,14 @@
         header("location: ../login/index.php");
         exit;
     }
+    require_once '../login/classes/usuarios.php';
+    $u = new Usuario();
+    $u->conectar("finalodaw", "localhost", "root", "");
+    $tudo = $u->mostrar($_SESSION['id']);
 ?>
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,6 +45,8 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Encomendar</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Nossa Empresa</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contato</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#"><?php echo $tudo['nome']?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../login/index.php">Logout</a></li>
                     </ul> 
                 </div>
             </div>
@@ -354,7 +363,7 @@
                 </div>
                 <form method="POST" action="../src/index.php" name="sentMessage" novalidate="novalidate">
                 <select name="selectbolo" id="bolos" >
-                    <option value="0" selected="selected" disabled="disabled">Bolos</option>
+                    <option value="0" selected="selected" disabled="disabled">Bolos *</option>
                     <option value="chocoCake">Choco Cake</option> 
                     <option value="chocoberry">ChocoBerry Cake</option>
                     <option value="rainbow">Rainbow Cake</option>
@@ -362,9 +371,9 @@
                     <option value="galaxy">Galaxy Cake</option>
                     <option value="redvalvet">Red Valvet Cake</option>
                 </select>
-                <input name="qtdbol" type="text" id="qtdbol" placeholder="Quantidade em Kg">
+                <input name="qtdbol" type="text" id="qtdbol" placeholder="Quantidade em Kg *">
                 <select name="selecttopo" id="topos">
-                    <option value="0" selected="selected" disabled="disabled">Decorações</option>
+                    <option value="0" selected="selected" disabled="disabled">Decorações *</option>
                     <option value="docinhos">Docinhos</option> 
                     <option value="bombom">Bom Bom</option>
                     <option value="frutas">Frutas</option>
@@ -372,32 +381,32 @@
                     <option value="marshmallow">Marshmallow</option>
                     <option value="artes">Artes</option>
                 </select>
-                <input name="qtddoc" class="inpt" type="text" id="qtddoc" placeholder="Quantidade Docinhos">
+                <input name="qtddoc" class="inpt" type="text" id="qtddoc" placeholder="Quantidade Docinhos *">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="name" type="text" placeholder="Nome *" required="required" data-validation-required-message="Please enter your name." />
+                                <input name="name" class="form-control" id="name" type="text" value="<?php echo $tudo['nome'] ?>"placeholder="Nome" required="required" data-validation-required-message="Please enter your name." />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" name='email' id="email" type="email" placeholder="Email *" required="required" data-validation-required-message="Please enter your email address." />
+                                <input  class="form-control" name='email' value="<?php echo $tudo['email']?>"id="email"  type="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email address." />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group mb-md-0">
-                                <input class="form-control" id="phone" type="tel" placeholder="Phone *" required="required" data-validation-required-message="Please enter your phone number." />
+                                <input name="tel" class="form-control" id="phone" value="<?php echo $tudo['telefone']?>"type="tel" placeholder="Phone" required="required" data-validation-required-message="Please enter your phone number." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
-                                <textarea class="form-control" id="message" placeholder="Mensagem *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                                <textarea name="message" class="form-control" id="message" placeholder="Mensagem" required="required" data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <input class="btn btn-primary btn-xl text-uppercase"  type="submit">Enviar</input>
+                        <input class="btn btn-primary btn-xl text-uppercase"  type="submit"></input>
                     </div>
                 </form>
             </div>

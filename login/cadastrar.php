@@ -63,6 +63,8 @@ $u = new Usuario();
                 if ($senha == $confirmarSenha) {
                     if ($u->cadastrar($nome, $telefone, $email, $senha, $address)) {
                         echo "Cadastrado com sucesso!";
+                        header("location: ../login/index.php");
+                        exit;
                     } else {
                         echo "Email ja cadastrado!";
                     }
